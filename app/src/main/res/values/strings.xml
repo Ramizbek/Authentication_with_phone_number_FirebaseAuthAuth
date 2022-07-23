@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FirebaseAuthWithPhone</string>
+    <string name="resent_code">Resent code</string>
+</resources>

@@ -150,13 +150,16 @@ class MainActivity2 : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show()
+                    val list = MyShared.list
+                    list.clear()
+                    list.add(MyObject.number)
+                    MyShared.list = list
                     startActivity(Intent(this, MainActivity3::class.java))
                     finish()
                 } else {
                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(this, "You entered wrong verification!", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this, "You entered wrong verification!", Toast.LENGTH_SHORT)                             .show()
                     }
                 }
             }

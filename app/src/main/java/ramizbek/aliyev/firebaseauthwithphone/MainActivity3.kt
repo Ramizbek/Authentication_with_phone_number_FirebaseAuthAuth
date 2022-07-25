@@ -10,6 +10,6 @@ class MainActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMain3Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.tvPhoneNumberMain3.text = MyObject.number
+        binding.tvPhoneNumberMain3.text = MyShared.list[0]
     }
 }

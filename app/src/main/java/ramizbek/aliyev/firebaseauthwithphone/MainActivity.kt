@@ -22,14 +22,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnEnter.setOnClickListener {
-            val text = binding.edtPhoneNumber.text.toString()
-            if (text.isNotEmpty() && text.length == 13 && text.substring(0, text.length - 9) == "+998"){
-                MyObject.number = text
-                startActivity(Intent(this, MainActivity2::class.java))
-            }else{
-                Toast.makeText(this, "This is not Uzbek number", Toast.LENGTH_SHORT).show()
+        MyShared.init(this)
+
+        if (MyShared.list.isEmpty()) {
+            binding.btnEnter.setOnClickListener {
+                val text = binding.edtPhoneNumber.text.toString()
+                if (text.isNotEmpty() && text.length == 13 && text.substring(
+                        0,
+                        text.length - 9
+                    ) == "+998"
+                ) {
+                    MyObject.number = text
+                    startActivity(Intent(this, MainActivity2::class.java))
+                } else {
+                    Toast.makeText(this, "This is not Uzbek number", Toast.LENGTH_SHORT).show()
+                }
             }
+        } else {
+            finish()
+            startActivity(Intent(this, MainActivity3::class.java))
+
         }
     }
 }
